@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Chopt Salad</title>
+    <meta name="description" content="Chopt Salad">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="icon" href="./assets//icons/salad.png">
+    <link rel="stylesheet" href="./index.css" />
+    <!-- A frame -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- A frame physics -->
+    <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
+    <script src="//cdn.8thwall.com/web/aframe/aframe-physics-system-4.0.1.min.js"></script>
+    <!-- Orbital Camera -->
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/v0.1.14/dist/aframe-orbit-controls-component.min.js"></script>
+    <!-- 3D Text -->
+    <script
+        src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
+  
+
+</head>
+
+<body>
+    <h1>Mix Your Own Salad</h1>
+    <h3>Please go ahead and pick your choice of dressing :</h3>
+    <div id="salad-dressing">
+        <div id="salad-dressing-list">
+            <input name="tomato" type="checkbox">Round Tomato</input>
+            <input name="tofu" type="checkbox">Tofu</input>
+            <input name="jalapeno" type="checkbox">Jalapeno</input>
+            <input name="pineapple" type="checkbox">Pineapple</input>
+            <input name="onion" type="checkbox">Onion</input>
+        </div>
+        <div id="salad-controls">
+            <button name="orderSalad" type="button" onclick="orderSalad()">Mix And Deliver Salad</button>
+        </div>
+    </div>
+
+    <div id="a-scene-container">
+        <a-scene embedded vr-mode-ui="enabled:false" physics="driver: ammo; debug: false; debugDrawMode: 1;">
+            <a-assets>
+                <!-- Add Assets To Pre Load Below -->
+                <a-asset-item id="saladBowl" src="./assets/models/bowl_3d_model.glb"></a-asset-item>
+                <a-asset-item id="tomato" src="./assets/models/tomato.glb"></a-asset-item>
+                <a-asset-item id="tofu" src="./assets/models/tofu_model.glb"></a-asset-item>
+                <a-asset-item id="broccoli" src="./assets/models/broccoli.glb"></a-asset-item>
+                <a-asset-item id="pineapple" src="./assets/models/pineapple_model.glb"></a-asset-item>
+                <a-asset-item id="onion" src="./assets/models/onion_ring_model.glb"></a-asset-item>
+                <a-asset-item id="jalapeno" src="./assets/models/jalapeno_3d_model.glb"></a-asset-item>
+                <a-asset-item id="optimerBoldFont"
+                    src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+<!-- Ground Texture -->
+<img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+<img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+
+            </a-assets>
+            <a-sky src="#skyTexture" rotation="0 200 -8"></a-sky>
+            <!-- Orbit Camera -->
+            <a-entity id="rig" position="0 4 2">
+                <a-entity id="camera" camera="zoom:1.7" look-controls rotation="0 360 0" orbit-controls="enabled:true;
+                target: #bowl;
+                enableZoom: false;
+                maxPolarAngle:1.8;
+                ">
+                </a-entity>
+
+
+            </a-entity>
+            <a-entity id="readyText" text-geometry="value: Ready To Serve" position="-2 20 -14" scale="3 3 3" material="color: transparent; src: #texture"></a-entity>
+            <a-entity id="bowl" class="physics-object" physics-object="model: #saladBowl" position="0 1.6 -14" scale="3 3 3" width="5" height="5" depth="5"></a-entity>
+            <a-entity id="toppingContainer" class="physics-object"></a-entity>
+
+        </a-scene>
+    </div>
+    <!--custom js-->
+    <script src="./index.js "></script>
+</body>
+</html>
