@@ -172,4 +172,12 @@ const orderSalad = () => {
 (() => {
     const saladDressingUL = document.querySelector('#salad-dressing-list');
     saladDressingUL.addEventListener('click', addTopping);
+    
+    // Check for small screen
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 800) {
+    console.log('small screen')
+    const readyText = document.querySelector('#readyText');
+    readyText.setAttribute('scale', '1 1 1');
+    }
 })();

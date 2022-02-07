@@ -34,11 +34,13 @@ h1 {
 #salad-dressing {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 #salad-dressing-list {
   display: flex;
   align-items: center;
   user-select: none;
+  flex-wrap: wrap;
 }
 
 #salad-dressing-list input[type="checkbox"] {
@@ -63,3 +65,16 @@ a-scene {
 }
 
 /**A frame Styling Ends**/
+
+/** Mobile Styling **/
+@media only screen and (max-width: 768px) {
+  #salad-dressing {
+    justify-content: center;
+  }
+  #salad-dressing-list {
+    margin: 0.5rem;
+  }
+  #salad-toppings {
+    margin: 0.25rem;
+  }
+}
