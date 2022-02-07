@@ -1,6 +1,6 @@
 const saladBowl = document.querySelector('#bowl');
 let toppingsList = [];
-
+let isMobile = false;
 /***********************************************************
  create topping gltf model for bowl object
  ***********************************************************/
@@ -154,9 +154,16 @@ const addTopping = (e) => {
 
 const orderSalad = () => {
     const text3d = document.querySelector('#readyText');
-    text3d.setAttribute('position', '-8 8.25 -14');
+    if(isMobile) {
+        readyText.setAttribute('scale', '1 1 1');
+        text3d.setAttribute('position', '-2 8.25 -14');
+    } else {
+        text3d.setAttribute('position', '-8 8.25 -14');
+    }
+
     const camera = document.querySelector('#camera');
     const cameraRig = document.querySelector('#rig');
+
     cameraRig.setAttribute(
         'animation',
         'property: position; dur:2000; to: 0 3 -1'
@@ -176,8 +183,7 @@ const orderSalad = () => {
     // Check for small screen
     const screenWidth = window.innerWidth;
     if (screenWidth < 800) {
+    isMobile = true;
     console.log('small screen')
-    const readyText = document.querySelector('#readyText');
-    readyText.setAttribute('scale', '1 1 1');
     }
 })();
